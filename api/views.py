@@ -1,3 +1,5 @@
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
@@ -7,11 +9,17 @@ from api.models import Employee
 from datetime import date
 
 class EmployeeViewSet(viewsets.ModelViewSet):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
     serializer_class = EmployeeSerializer
     queryset = Employee.objects.all()
 
 
 class EmployeeViewAge(generics.ListAPIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
     serializer_class = EmployeeSerializer
     queryset = Employee.objects.all()
 
@@ -38,6 +46,10 @@ class EmployeeViewAge(generics.ListAPIView):
         return Response(data)
 
 class EmployeeViewSalary(generics.ListAPIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    
     serializer_class = EmployeeSerializer
     queryset = Employee.objects.all()
 
