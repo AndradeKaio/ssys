@@ -17,8 +17,9 @@ $ pip install -r requirements.txt
 Run migrations
 
 ```bash 
-$ python manage.py makemigrations vitrine
+$ python manage.py makemigrations api
 $ python manage.py migrate
+$ python manage.py createuser
 ```
 
 
@@ -43,6 +44,11 @@ $ docker-compose build && sudo docker-compose up -d
 [http://localhost:8000/](http://localhost:8000/)
 
 
+**User**
+user: `ssys`
+password: `password`
+
+
 ## Structure
 
 Endpoint |HTTP Method | CRUD Method | Result
@@ -59,7 +65,8 @@ Endpoint |HTTP Method | CRUD Method | Result
 
 You can test using any http client, but there is a [postman](https://www.postman.com/) collection with some tests right [here](/util/ssys.postman_collection.json).
 
-
+## Production
+Access the API in production on Heroku [here](https://ssysapi.herokuapp.com/)
 
 ## Contact
 deandradekaio@gmail.com
