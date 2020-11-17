@@ -57,15 +57,15 @@ class EmployeeViewSalary(generics.ListAPIView):
         queryset = self.get_queryset()
 
         #filter the queryset
-        older = queryset.latest('birth_date')
-        younger = queryset.earliest('birth_date')
+        lowest = queryset.order_by('salary').first()
+        highest = queryset.order_by('salary').last()
 
-        average = (older.salary + younger.salary) / 2
+        average = (lowest.salary + highest.salary) / 2
 
         #serialize objects
-        younger_s = EmployeeSerializer(younger)
-        older_s = EmployeeSerializer(older)
+        highest_s = EmployeeSerializer(highest)
+        lowest_s = EmployeeSerializer(lowest)
 
         #add top level info
-        data = {'younger': younger_s.data, 'older': older_s.data, 'average': average}
+        data = {'highest': highest_s.data, 'lowest': lowest_s.data, 'average': average}
         return Response(data)
